@@ -36,22 +36,16 @@ class ApplicationController < Sinatra::Base
   	end
   end
 
-  get '/lvl1' do
-  	session['limit'] = 5
-  	session['level'] = "EASY"
-  	session['number'] = rand(1..20)
-  	redirect to('/game')
-  end
-  get '/lvl2' do
-  	session['limit'] = 10
-  	session['level'] = "MEDIUM"
-  	session['number'] = rand(1..50)
-   	redirect to('/game')
-  end
-  get '/lvl3' do
-  	session['limit'] = 20
-  	session['level'] = "HARD"
-  	session['number'] = rand(1..100)
+  get '/lvl' do
+  	session['limit'] = params[:chance].to_i
+  	session['level'] = params[:set]
+  	if session['level'] == "EASY"
+  		session['number'] = rand(1..20)
+  	elsif session['level'] == "MEDIUM"
+  		session['number'] = rand(1..50)
+  	else
+  		session['number'] = rand(1..100)
+  	end
   	redirect to('/game')
   end
 
