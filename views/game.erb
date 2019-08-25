@@ -56,11 +56,11 @@ Number(s) that you have guessed:<br><b><font color="green"> <%= session['guess_l
 <br>
 <a href="/"><img src="images/homes.png" width="100" title="Home" /></a>
 <% if session['level'] == "EASY" %>
-<a href="/lvl1">
+<a href="/lvl?set=EASY&chance=5">
 <% elsif session['level'] == "MEDIUM" %>
-<a href="/lvl2">
+<a href="/lvl?set=MEDIUM&chance=10">
 <% else %>
-<a href="/lvl3">
+<a href="/lvl?set=HARD&chance=20">
 <% end %><img src="images/agains.png" width="100" title="Play Again (same difficulty level)"/></a>
 <a href="/level"><img src="images/plays.png" width="100" title="New Game" /></a>
 </center>
