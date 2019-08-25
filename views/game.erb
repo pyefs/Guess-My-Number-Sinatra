@@ -1,0 +1,67 @@
+<style>
+.box {
+	color: yellow;
+	font-size: 12pt;
+	font-weight: bold;
+	width: 400px;
+	background-color: #191c5f;
+	padding: 5px;
+	margin: 5px;
+	border-radius: 10px;
+}
+.box2 {
+	background-color: #c9c7c7;
+	width: 300px;
+	padding: 5px;
+	margin: 5px;
+	border-radius: 5px;	
+}
+</style>
+
+<div class="jumbotron text-center">
+<center>
+<div class="box">		
+	<br>Difficulty:<br>
+	<font color="#f95656"> <%= session['level'] %></font> <br>
+	<font color="#191c5f"><%= session['number'] %></font>
+</div>
+
+<% if session['chance'] > 1 %>
+	<font color="red">You've guessed the <u><b>WRONG</b></u> number!</font><br>
+	**<i> Your guess is too<b> <% if session['guess'].to_i < session['number'] %>LOW<% else %>HIGH<% end %></b>! Please try again! </i>**<br><br>
+<% end %>
+
+Guess a number between:<br><b>
+<% if session['level'] == "EASY" %>
+1 - 20<br>
+<% elsif session['level'] == "MEDIUM" %>
+1 - 50<br>
+<% else %>
+1  100<br>
+<% end %>
+</b>
+<form action="/game" method="post">
+	<input type="number" name="guess" placeholder="Enter Your Guess">
+	<input type="submit" name="Submit">
+</form>
+
+<br>
+<center>
+<div class="box2">
+** <i>This is attempt<b><font color="red"> #<%= session['chance'] %> </b></font>out of<b><font color="red"> <%= session['limit'] %></font></b></i> ** <br>
+<% if session['chance'] > 1 %>
+Number(s) that you have guessed:<br><b><font color="green"> <%= session['guess_list'].join(", ") %></font></b>
+<% end %>
+</div></center>
+<br>
+<a href="/"><img src="images/homes.png" width="100" title="Home" /></a>
+<% if session['level'] == "EASY" %>
+<a href="/lvl1">
+<% elsif session['level'] == "MEDIUM" %>
+<a href="/lvl2">
+<% else %>
+<a href="/lvl3">
+<% end %><img src="images/agains.png" width="100" title="Play Again (same difficulty level)"/></a>
+<a href="/level"><img src="images/plays.png" width="100" title="New Game" /></a>
+</center>
+</div>

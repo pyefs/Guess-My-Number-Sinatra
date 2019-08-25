@@ -1,0 +1,56 @@
+<style>
+.box {
+	font-size: 18pt;
+	text-align: center;
+	color: red;
+	font-weight: bold;
+	width: 400px;
+	background-color: black;
+	padding: 20px;
+	margin: 20px;
+	border-radius: 75px;
+}
+.number {
+	text-align: center;
+	font-size: 14pt;
+	color: yellow;
+	font-weight: bold;
+	width: 100px;
+	background-color: #279800;
+	padding: 2px;
+	margin: 2px;
+	border-radius: 75px;
+}
+.menu {
+	text-align: center;
+	font-size: 12pt;
+	color: white;
+	font-weight: bold;
+	width: 100px;
+	background-color: blue;
+	padding: 5px;
+	margin: 5px;
+	border-radius: 5px;
+	display: inline;
+}
+</style>
+<div class="jumbotron text-center">
+<center>
+<img src="images/over.png" width="400"/><br>
+<b><font color="red">Oopps! Sorry, you've LOST!</font></b><br><br>
+<b>My secret number is</b><br>
+<div class="number"><%= session['number'] %></div> <br>
+Your guesses:<br><b>
+<font color="red"><%= session['guess_list'].join(", ") %></font></b><br><br>
+
+<a href="/"><img src="images/homes.png" width="100" title="Home" /></a>
+<% if session['level'] == "EASY" %>
+<a href="/lvl1">
+<% elsif session['level'] == "MEDIUM" %>
+<a href="/lvl2">
+<% else %>
+<a href="/lvl3">
+<% end %><img src="images/agains.png" width="100" title="Play Again (same difficulty level)"/></a>
+<a href="/level"><img src="images/plays.png" width="100" title="New Game" /></a>
+</center>
+</div>
